@@ -48,4 +48,62 @@ public class RectangularTextContainer<T extends Rectangle & HasText> extends Rec
 		return sb.toString();
 	}
 
+	// Utility method to sanitize text
+  private String sanitizeText(String text) {
+    StringBuilder sanitized = new StringBuilder();
+    for (char c : text.toCharArray()) {
+    	if (isRecognizedCharacter(c)) {
+				sanitized.append(c);
+			} else {
+				sanitized.append('?');
+			}
+		}
+			return sanitized.toString();
+	}
+
+	// Method to check if a character is recognized
+	private boolean isRecognizedCharacter(char c) {
+    return Character.isLetterOrDigit(c) || Character.isWhitespace(c) || isCommonPunctuation(c);
+	}
+
+	// Helper method to check if a character is common punctuation
+	private boolean isCommonPunctuation(char c) {
+    switch (c) {
+      case '.':
+      case ',':
+      case '!':
+      case '?':
+      case ';':
+      case ':':
+      case '-':
+      case '_':
+      case '(':
+      case ')':
+      case '[':
+      case ']':
+      case '{':
+      case '}':
+      case '\'':
+      case '\"':
+      case '/':
+      case '\\':
+      case '@':
+      case '#':
+      case '$':
+      case '%':
+      case '^':
+      case '&':
+      case '*':
+      case '+':
+      case '=':
+      case '<':
+      case '>':
+      case '|':
+      case '~':
+      case '`':
+      	return true;
+      default:
+				return false;
+    }
+	}
 }
