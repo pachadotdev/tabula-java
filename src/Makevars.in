@@ -1,0 +1,8 @@
+# Minimal templated Makevars.in for R-style packaging
+# Placeholders expected: @cflags@, @optflags@, @libs@
+# configure will substitute these and write src/Makevars
+
+PKG_CPPFLAGS=@cflags@
+PKG_OPTFLAGS=@optflags@
+PKG_CXXFLAGS=$(C_VISIBILITY) $(PKG_OPTFLAGS)
+PKG_LIBS=@libs@
